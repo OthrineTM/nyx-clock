@@ -2,6 +2,8 @@
 
 A customizable desktop clock for KDE Plasma 6, with weekday, date and weather.
 
+![Nyx Clock on a purple wallpaper with weekday, time, date and weather](screenshots/clock.png)
+
 ## Features
 
 - **Layout & Format:**
