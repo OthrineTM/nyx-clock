@@ -102,7 +102,7 @@ KCM.SimpleKCM {
             wrapMode: Text.WordWrap
             opacity: 0.7
             text: "Tip: resize the widget itself to scale everything at once. "
-                + "Installed extras: Orbitron, Quicksand, Audiowide, Michroma."
+                + "Suggested free fonts (Google Fonts): Orbitron, Quicksand, Audiowide, Michroma. See the README to install them."
         }
     }
 }

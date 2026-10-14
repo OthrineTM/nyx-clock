@@ -16,7 +16,27 @@ A customizable desktop clock for KDE Plasma 6, with weekday, date and weather.
 
 ## Fonts
 
-The default fonts are [Orbitron](https://fonts.google.com/specimen/Orbitron), [Quicksand](https://fonts.google.com/specimen/Quicksand) and [Audiowide](https://fonts.google.com/specimen/Audiowide), all free under the OFL. Install them for the default look, or pick any installed font in **Fonts & Sizes**.
+The default look uses three free fonts from Google Fonts (all under the SIL Open Font License):
+
+| Part | Font |
+|---|---|
+| Weekday | [Orbitron](https://fonts.google.com/specimen/Orbitron) |
+| Time and weather details | [Quicksand](https://fonts.google.com/specimen/Quicksand) |
+| Date | [Audiowide](https://fonts.google.com/specimen/Audiowide) |
+
+[Michroma](https://fonts.google.com/specimen/Michroma) is a nice optional extra. Without these fonts the clock still works but falls back to your system font. You can also pick any installed font in **Fonts & Sizes**.
+
+Install all four for your user (no root needed):
+
+```bash
+mkdir -p ~/.local/share/fonts/google && cd ~/.local/share/fonts/google
+for f in "orbitron/Orbitron%5Bwght%5D.ttf" "quicksand/Quicksand%5Bwght%5D.ttf" "audiowide/Audiowide-Regular.ttf" "michroma/Michroma-Regular.ttf"; do
+  curl -fLO "https://raw.githubusercontent.com/google/fonts/main/ofl/$f"
+done
+fc-cache -f
+```
+
+Then restart Plasma (`systemctl --user restart plasma-plasmashell`) so the clock picks them up.
 
 ## Install
 
