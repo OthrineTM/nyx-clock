@@ -20,6 +20,10 @@ The default fonts are [Orbitron](https://fonts.google.com/specimen/Orbitron), [Q
 
 ## Install
 
+**From the KDE Store:** right-click your desktop → **Add or Manage Widgets…** → **Get New Widgets…** → **Download New Plasma Widgets…**, search for **Nyx Clock** and click **Install**. Or download it from its [KDE Store page](https://store.kde.org/p/2378515).
+
+**From GitHub:**
+
 ```bash
 git clone https://github.com/OthrineTM/nyx-clock.git
 kpackagetool6 --type Plasma/Applet --install nyx-clock/package
