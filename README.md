@@ -55,6 +55,11 @@ Then right-click your desktop → **Add or Manage Widgets…**, search for **Nyx
 
 **Remove:** `kpackagetool6 --type Plasma/Applet --remove io.github.othrinetm.nyxclock`
 
+## See also
+
+- [Nyx Player](https://github.com/OthrineTM/nyx-player): panel music player with a spinning vinyl cover and an Easy Effects preset switcher
+- [Nyx Control](https://github.com/OthrineTM/nyx-control): control center with notifications, clipboard, system gauges and quick toggles
+
 ## License
 
 GPL-3.0-or-later. See [LICENSE](LICENSE). Weather data by [Open-Meteo.com](https://open-meteo.com) (CC BY 4.0).
