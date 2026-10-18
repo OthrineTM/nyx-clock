@@ -18,7 +18,8 @@ QtObject {
 
     property var shared: null
     readonly property bool sharing: !!cfg.styleShared
-    readonly property var look: (sharing && shared) ? shared : Presets.fromConfig(cfg)
+    readonly property var localLook: Presets.fromConfig(cfg)
+    readonly property var look: (sharing && shared) ? shared : localLook
 
     readonly property string preset: look.preset || "custom"
     readonly property string presetName: {
@@ -61,11 +62,16 @@ QtObject {
     // Apply a look (a preset or a full set of values) to this widget, and to all widgets when shared.
     function apply(newLook) {
         Presets.toConfig(cfg, newLook)
-        if (sharing) {
-            s.shared = Presets.fromConfig(cfg)
-            exec.run(Presets.writeCommand("style.json", Presets.serialize(s.shared), Qt.btoa))
-        }
+        publish()
     }
+    function publish() {
+        if (!sharing) return
+        s.shared = Presets.fromConfig(cfg)
+        exec.run(Presets.writeCommand("style.json", Presets.serialize(s.shared), Qt.btoa))
+    }
+    // a look changed in this widget's settings becomes the shared look
+    property bool ready: false
+    onLocalLookChanged: if (ready && Presets.serialize(localLook) !== Presets.serialize(shared || {})) publish()
     function applyPreset(id) {
         var p = Presets.find(id, userPresets)
         if (p) apply(p)
@@ -104,5 +110,8 @@ QtObject {
         triggeredOnStart: true
         onTriggered: s.exec.run(Presets.readStyleCommand)
     }
-    Component.onCompleted: exec.run(Presets.readPresetsCommand)
+    Component.onCompleted: {
+        exec.run(Presets.readPresetsCommand)
+        ready = true
+    }
 }
