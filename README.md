@@ -20,7 +20,7 @@ A customizable desktop clock for KDE Plasma 6, with weekday, date and weather.
 
 Every Nyx widget has a **Style** page with the same presets: **Glass**, **Frost**, **Smoke**, **Solid**, **Light**, **Neon**, **Clear** and **Theme** (follows your Plasma colors). Each preset is a starting point: tweak the tint, opacity, shine, corner radius, edge, shadow, accent glow, text shadow, text and accent colors and font, then save the result as your own preset.
 
-With **Share this look with every Nyx widget** on (the default), a look applied in one widget is used by all of them, so the clock, player, control center and the [Nyx Deck](https://github.com/OthrineTM/nyx-widgets) pack always match. Right-click any widget and choose **Next Style** to flip through the presets. The shared look and your presets are stored in `~/.config/nyx-widgets/`.
+With **Share this look with every Nyx widget** on (the default), a look applied in one widget is used by all of them, so the clock, player, control center and the [Nyx Deck](https://github.com/OthrineTM/nyx-deck) pack always match. Right-click any widget and choose **Next Style** to flip through the presets. The shared look and your presets are stored in `~/.config/nyx-widgets/`.
 
 The clock keeps its own colors from **Colors & Glow** unless you turn on *Use the colors of the shared Nyx style* there.
 
