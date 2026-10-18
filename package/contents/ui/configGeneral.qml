@@ -7,6 +7,8 @@ import org.kde.kcmutils as KCM
 KCM.SimpleKCM {
     id: page
 
+    property alias cfg_face: face.currentIndex
+    property alias cfg_fitToWidget: fitToWidget.checked
     property alias cfg_layoutStyle: layoutStyle.currentIndex
     property alias cfg_alignment: alignment.currentIndex
     property alias cfg_showDay: showDay.checked
@@ -21,6 +23,24 @@ KCM.SimpleKCM {
     property alias cfg_localeName: localeName.text
 
     Kirigami.FormLayout {
+        QQC2.ComboBox {
+            id: face
+            Kirigami.FormData.label: "Face:"
+            model: ["Classic", "Stacked (hours over minutes)", "Weekday card", "Compact card", "Analog", "Minimal"]
+        }
+        QQC2.CheckBox {
+            id: fitToWidget
+            text: "Shrink to fit the widget"
+        }
+        QQC2.Label {
+            Layout.maximumWidth: Kirigami.Units.gridUnit * 24
+            wrapMode: Text.WordWrap
+            opacity: 0.7
+            text: "Right-click the clock and choose Next Face to flip through faces. Layout and alignment apply to the Classic face."
+        }
+
+        Kirigami.Separator { Kirigami.FormData.isSection: true; Kirigami.FormData.label: "Classic face" }
+
         QQC2.ComboBox {
             id: layoutStyle
             Kirigami.FormData.label: "Layout:"

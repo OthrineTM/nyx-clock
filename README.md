@@ -6,6 +6,8 @@ A customizable desktop clock for KDE Plasma 6, with weekday, date and weather.
 
 ## Features
 
+- **Faces:** Classic, Stacked (hours over minutes), Weekday card (big weekday with week number and day of the year), Compact card, Analog and Minimal. Pick one in the settings, or right-click the clock and choose **Next Face**. Faces shrink to fit the widget.
+- **Style:** draw the clock on a card in one of the shared Nyx looks (see below), or keep the default Clear look with no card.
 - **Layout & Format:**
   - choose the layout and alignment
   - 12 or 24 hour time, optional seconds, optional seconds progress bar
@@ -13,6 +15,14 @@ A customizable desktop clock for KDE Plasma 6, with weekday, date and weather.
 - **Fonts & Sizes:** font family, weight (100–900) and size for each part (weekday, time, date, details). Resize the widget to scale everything at once.
 - **Colors & Glow:** a color for each part, an accent color, an adjustable glow, and ready-made color presets. The default is a violet theme.
 - **Weather:** current conditions, "feels like" and humidity from [Open-Meteo](https://open-meteo.com). It's free, with no account or API key. Search for your city in the settings. The default city is London.
+
+## Styles
+
+Every Nyx widget has a **Style** page with the same presets: **Glass**, **Frost**, **Smoke**, **Solid**, **Light**, **Neon**, **Clear** and **Theme** (follows your Plasma colors). Each preset is a starting point: tweak the tint, opacity, shine, corner radius, edge, shadow, accent glow, text shadow, text and accent colors and font, then save the result as your own preset.
+
+With **Share this look with every Nyx widget** on (the default), a look applied in one widget is used by all of them, so the clock, player, control center and the [Nyx Deck](https://github.com/OthrineTM/nyx-deck) pack always match. Right-click any widget and choose **Next Style** to flip through the presets. The shared look and your presets are stored in `~/.config/nyx-widgets/`.
+
+The clock keeps its own colors from **Colors & Glow** unless you turn on *Use the colors of the shared Nyx style* there.
 
 ## Fonts
 

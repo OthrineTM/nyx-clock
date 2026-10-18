@@ -17,6 +17,7 @@ KCM.SimpleKCM {
     property alias cfg_glowEnabled: glowEnabled.checked
     property string cfg_glowColor
     property alias cfg_glowStrength: glowStrength.value
+    property alias cfg_useStyleColors: useStyleColors.checked
 
     readonly property var presets: [
         { name: "Violet", day: "#e9d5ff", time: "#f5f3ff", ampm: "#e879f9", date: "#d8b4fe", detail: "#c4b5fd", accent: "#a855f7", glow: "#a855f7", strength: 80 },
@@ -51,7 +52,20 @@ KCM.SimpleKCM {
     }
 
     Kirigami.FormLayout {
+        QQC2.CheckBox {
+            id: useStyleColors
+            Kirigami.FormData.label: "Source:"
+            text: "Use the colors of the shared Nyx style"
+        }
+        QQC2.Label {
+            Layout.maximumWidth: Kirigami.Units.gridUnit * 24
+            wrapMode: Text.WordWrap
+            opacity: 0.7
+            text: "When on, the clock takes its text and accent colors from the Style page, like the other Nyx widgets."
+        }
+
         RowLayout {
+            enabled: !useStyleColors.checked
             Kirigami.FormData.label: "Presets:"
             Repeater {
                 model: page.presets
@@ -63,6 +77,8 @@ KCM.SimpleKCM {
         }
 
         Kirigami.Separator { Kirigami.FormData.isSection: true; Kirigami.FormData.label: "Colors" }
+
+        // (the color buttons stay editable; they're used again when the option above is off)
 
         ColorPick { Kirigami.FormData.label: "Weekday:"; value: page.cfg_dayColor; onPicked: c => page.cfg_dayColor = c }
         ColorPick { Kirigami.FormData.label: "Time:"; value: page.cfg_timeColor; onPicked: c => page.cfg_timeColor = c }

@@ -18,6 +18,11 @@ ConfigModel {
         source: "configColors.qml"
     }
     ConfigCategory {
+        name: "Style"
+        icon: "preferences-desktop-theme"
+        source: "configStyle.qml"
+    }
+    ConfigCategory {
         name: "Weather"
         icon: "weather-few-clouds"
         source: "configWeather.qml"
