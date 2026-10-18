@@ -10,7 +10,7 @@ A customizable desktop clock for KDE Plasma 6, with weekday, date and weather.
 - **Style:** draw the clock on a card in one of the shared Nyx looks (see below), or keep the default Clear look with no card.
 - **Layout & Format:**
   - choose the layout and alignment
-  - 12 or 24 hour time, optional seconds, optional seconds progress bar
+  - 12 or 24 hour time (12-hour mode shows 1-12 with AM/PM on every face that shows the time), optional seconds, optional seconds progress bar
   - custom weekday and date formats, UPPERCASE switches, and a language (locale) option
 - **Fonts & Sizes:** font family, weight (100–900) and size for each part (weekday, time, date, details). Resize the widget to scale everything at once.
 - **Colors & Glow:** a color for each part, an accent color, an adjustable glow, and ready-made color presets. The default is a violet theme.

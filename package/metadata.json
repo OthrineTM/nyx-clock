@@ -7,7 +7,7 @@
         "Description": "Customizable desktop clock with weekday, date and weather",
         "Icon": "preferences-system-time",
         "Category": "Date and Time",
-        "Version": "2.1",
+        "Version": "2.2",
         "License": "GPL-3.0-or-later",
         "Authors": [{ "Name": "OthrineTM" }],
         "Website": "https://github.com/OthrineTM/nyx-clock"

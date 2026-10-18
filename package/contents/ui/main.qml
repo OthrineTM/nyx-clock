@@ -62,8 +62,18 @@ PlasmoidItem {
     function fmt(pattern) {
         return root.now.toLocaleString(root.loc, pattern)
     }
+    // Qt's "h"/"hh" only switch to 1-12 when the pattern itself has AP,
+    // so the 12-hour value is worked out here
+    function hourText(padded) {
+        if (!use12h) return fmt(padded ? "HH" : "H")
+        var h = now.getHours() % 12 || 12
+        return padded && h < 10 ? "0" + h : String(h)
+    }
+    function ampmText() {
+        return now.getHours() < 12 ? loc.amText : loc.pmText
+    }
     function timeText() {
-        return fmt(use12h ? (cfg.showSeconds ? "h:mm:ss" : "h:mm") : (cfg.showSeconds ? "HH:mm:ss" : "HH:mm"))
+        return hourText(!use12h) + fmt(cfg.showSeconds ? ":mm:ss" : ":mm")
     }
     function upper(t, on) { return on ? t.toUpperCase() : t }
     // ISO 8601 week number and day of the year
@@ -308,7 +318,7 @@ PlasmoidItem {
                         Text {
                             visible: root.use12h
                             Layout.alignment: Qt.AlignBaseline
-                            text: root.fmt("AP")
+                            text: root.ampmText()
                             color: root.cAmpm
                             font.family: root.cfg.timeFont
                             font.weight: root.cfg.timeWeight
@@ -385,7 +395,7 @@ PlasmoidItem {
                 ColumnLayout {
                     spacing: -face.s * 0.12
                     Repeater {
-                        model: [root.fmt(root.use12h ? "hh" : "HH"), root.fmt("mm")]
+                        model: [root.hourText(true), root.fmt("mm")]
                         Text {
                             required property string modelData
                             required property int index
@@ -404,7 +414,7 @@ PlasmoidItem {
                     spacing: face.s * 0.01
                     Text {
                         visible: root.use12h
-                        text: root.fmt("AP")
+                        text: root.ampmText()
                         color: root.cAmpm
                         font.family: root.cfg.timeFont
                         font.weight: root.cfg.timeWeight
@@ -549,7 +559,7 @@ PlasmoidItem {
                     Text {
                         visible: root.use12h
                         Layout.alignment: Qt.AlignBaseline
-                        text: root.fmt("AP")
+                        text: root.ampmText()
                         color: root.cAmpm
                         font.family: root.cfg.timeFont
                         font.weight: root.cfg.timeWeight
@@ -685,14 +695,26 @@ PlasmoidItem {
             ColumnLayout {
                 readonly property real h: Math.min(face.ch, face.cw * 0.45)
                 spacing: 0
-                Text {
+                RowLayout {
                     Layout.alignment: Qt.AlignHCenter
-                    text: root.timeText()
-                    color: root.cTime
-                    font.family: root.cfg.timeFont
-                    font.weight: Math.max(100, root.cfg.timeWeight - 400)
-                    font.pixelSize: parent.h * 0.62 * root.cfg.timeSize / 100
-                    font.features: { "tnum": 1 }
+                    spacing: parent.h * 0.03
+                    Text {
+                        text: root.timeText()
+                        color: root.cTime
+                        font.family: root.cfg.timeFont
+                        font.weight: Math.max(100, root.cfg.timeWeight - 400)
+                        font.pixelSize: parent.parent.h * 0.62 * root.cfg.timeSize / 100
+                        font.features: { "tnum": 1 }
+                    }
+                    Text {
+                        visible: root.use12h
+                        Layout.alignment: Qt.AlignBaseline
+                        text: root.ampmText()
+                        color: root.cAmpm
+                        font.family: root.cfg.timeFont
+                        font.weight: Math.max(100, root.cfg.timeWeight - 400)
+                        font.pixelSize: parent.parent.h * 0.14
+                    }
                 }
                 Text {
                     Layout.alignment: Qt.AlignHCenter
