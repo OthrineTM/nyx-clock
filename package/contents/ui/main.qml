@@ -23,6 +23,9 @@ PlasmoidItem {
     }
     readonly property var faceNames: ["Classic", "Stacked", "Weekday card", "Compact card", "Analog", "Minimal"]
 
+    // what a click on the widget opens (an app, a web address or a command; see NyxLauncher)
+    NyxLauncher { id: launcher; target: root.cfg.clickAction || "" }
+
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
             text: "Next Face: " + root.faceNames[(root.cfg.face + 1) % root.faceNames.length]
@@ -160,6 +163,14 @@ PlasmoidItem {
 
     fullRepresentation: Item {
         id: face
+
+        // a click opens what the settings say (a clock or calendar app, or the date and time settings)
+        MouseArea {
+            anchors.fill: parent
+            enabled: launcher.active
+            cursorShape: Qt.PointingHandCursor
+            onClicked: launcher.open()
+        }
         Layout.minimumWidth: 160
         Layout.minimumHeight: 100
         Layout.preferredWidth: [760, 420, 420, 260, 300, 420][root.cfg.face] ?? 760

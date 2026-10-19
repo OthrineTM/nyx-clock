@@ -51,6 +51,8 @@
 
     <!-- shared Nyx style (see NyxPresets.js); the default is the "Clear" look: no card -->
     <entry name="styleShared" type="Bool"><default>true</default></entry>
+    <!-- what a click opens: an app's desktop name, a web address or a command; choices separated by ; -->
+    <entry name="clickAction" type="String"><default>org.kde.kclock; org.kde.merkuro.calendar; kcmshell6 kcm_clock</default></entry>
     <entry name="stylePreset" type="String"><default>clear</default></entry>
     <entry name="styleTint" type="String"><default></default></entry>
     <entry name="styleOpacity" type="Int"><default>0</default></entry>

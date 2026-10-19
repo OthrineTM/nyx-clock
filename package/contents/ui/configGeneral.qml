@@ -5,6 +5,7 @@ import org.kde.kirigami as Kirigami
 import org.kde.kcmutils as KCM
 
 KCM.SimpleKCM {
+    property alias cfg_clickAction: clickField.text
     id: page
 
     property alias cfg_face: face.currentIndex
@@ -87,6 +88,10 @@ KCM.SimpleKCM {
             id: localeName
             Kirigami.FormData.label: "Language of names:"
             placeholderText: "empty = system (e.g. tr_TR, es_ES, de_DE)"
+        }
+        NyxClickField {
+            id: clickField
+            Kirigami.FormData.label: "On click, open:"
         }
     }
 }
