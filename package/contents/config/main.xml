@@ -64,6 +64,13 @@
     <entry name="styleText" type="String"><default></default></entry>
     <entry name="styleAccent" type="String"><default></default></entry>
     <entry name="styleFont" type="String"><default></default></entry>
+    <!-- style form: cards, spacing, number weight, capital labels, number font, motion -->
+    <entry name="styleCard" type="String"><default>plain</default></entry>
+    <entry name="styleSpace" type="Int"><default>50</default></entry>
+    <entry name="styleWeight" type="Int"><default>70</default></entry>
+    <entry name="styleCaps" type="Bool"><default>false</default></entry>
+    <entry name="styleNumFont" type="String"><default></default></entry>
+    <entry name="styleMotion" type="Int"><default>30</default></entry>
 
     <!-- weather (Open-Meteo) -->
     <entry name="showWeather" type="Bool"><default>true</default></entry>

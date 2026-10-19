@@ -36,14 +36,17 @@ PlasmoidItem {
         }
     ]
 
-    // part colors: the clock's own (Colors & Glow page) or the shared style's
+    // part colors: the clock's own (Colors & Glow page) or the shared style's. Own colors are
+    // checked against the look's surface, so pale custom colors turn dark on a light look
     readonly property bool styled: cfg.useStyleColors
-    readonly property color cDay: styled ? style.dim : cfg.dayColor
-    readonly property color cTime: styled ? style.text : cfg.timeColor
-    readonly property color cAmpm: styled ? style.accent : cfg.ampmColor
-    readonly property color cDate: styled ? style.dim : cfg.dateColor
-    readonly property color cDetail: styled ? style.dim : cfg.detailColor
-    readonly property color cAccent: styled ? style.accent : cfg.accentColor
+    readonly property color cDay: styled ? style.dim : style.readable(cfg.dayColor)
+    readonly property color cTime: styled ? style.text : style.readable(cfg.timeColor, 4.5)
+    readonly property color cAmpm: styled ? style.accent : style.readable(cfg.ampmColor)
+    readonly property color cDate: styled ? style.dim : style.readable(cfg.dateColor)
+    readonly property color cDetail: styled ? style.dim : style.readable(cfg.detailColor)
+    readonly property color cAccent: styled ? style.accent : style.readable(cfg.accentColor)
+    // the glow is a light halo for dark backgrounds; on a light surface it would only blur the text
+    readonly property bool glowOn: cfg.glowEnabled && !(style.opacity >= 0.45 && style.darkText)
     readonly property var loc: cfg.localeName.length > 0 ? Qt.locale(cfg.localeName) : Qt.locale()
     // clockFormat: 0 = follow system, 1 = 12h, 2 = 24h
     readonly property bool use12h: cfg.clockFormat === 1
@@ -246,15 +249,15 @@ PlasmoidItem {
             width: face.cw
             height: face.ch
 
-            layer.enabled: root.cfg.glowEnabled || root.style.textShadow > 0
+            layer.enabled: root.glowOn || root.style.textShadow > 0
             layer.effect: MultiEffect {
                 shadowEnabled: true
-                shadowColor: root.cfg.glowEnabled ? root.cfg.glowColor : "black"
-                shadowOpacity: root.cfg.glowEnabled ? root.cfg.glowStrength / 100 : root.style.textShadow
-                shadowBlur: root.cfg.glowEnabled ? 1.0 : 0.5
+                shadowColor: root.glowOn ? root.cfg.glowColor : root.style.textShadowColor
+                shadowOpacity: root.glowOn ? root.cfg.glowStrength / 100 : root.style.textShadow
+                shadowBlur: root.glowOn ? 1.0 : 0.5
                 shadowHorizontalOffset: 0
-                shadowVerticalOffset: root.cfg.glowEnabled ? 0 : 1
-                blurMax: root.cfg.glowEnabled ? 48 : 16
+                shadowVerticalOffset: root.glowOn ? 0 : 1
+                blurMax: root.glowOn ? 48 : 16
             }
 
             Loader {
